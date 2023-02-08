@@ -193,6 +193,26 @@ trait HasNames
     }
 
     /**
+     * Инициалы.
+     *
+     * @return string|null
+     */
+    public function getInitials(): ?string
+    {
+        $initials = null;
+
+        if ($this->hasFirstname()) {
+            $initials = $this->getFirst('firstname', 'u') . '.';
+
+            if ($this->hasMiddlename()) {
+                $initials .= $this->getFirst('middlename', 'u') . '.';
+            }
+        }
+
+        return $initials;
+    }
+
+    /**
      * Формат имени "Фамилия Имя Отчество".
      *
      * @return string
