@@ -92,14 +92,25 @@ class PersonTest extends TestCase
     public function testBirthday(Person $person)
     {
         $this->assertTrue($person->hasBirthday());
+
         $this->assertEquals('1984-10-21', $person->getBirthdayByFormat());
         $this->assertEquals('21.10.1984', $person->getBirthdayByFormat('21.10.1984'));
         $this->assertEquals('19841021', $person->getBirthday()->getDate()->format('Ymd'));
-        $this->assertEquals(10, $person->getAge('1994-10-21'));
 
+        $this->assertEquals(0, $person->getAge('1985-10-20'));
+        $this->assertEquals(1, $person->getAge('1985-10-21'));
         $this->assertEquals(38, $person->getAge('2023-02-08'));
-        $this->assertEquals(38, $person->getAge(new DateTime('2023-02-08')));
-        $this->assertEquals(38, $person->getAge(Carbon::parse('2023-02-08')));
+        $this->assertEquals(38, $person->getAge('2023-02-08'));
+        $this->assertEquals(38, $person->getBirthday()->getAge(new DateTime('2023-02-08')));
+        $this->assertEquals(38, $person->getBirthday()->getAge(Carbon::parse('2023-02-08')));
+        $this->assertNull($person->getBirthday()->getAge('1984-10-20'));
+
+        $this->assertEquals('0 лет', $person->getAgePhrase('31.12.1984'));
+        $this->assertEquals('0 лет', $person->getAgePhrase('21.10.1984'));
+        $this->assertEquals('21 год', $person->getAgePhrase('31.12.2005'));
+        $this->assertEquals('22 года', $person->getAgePhrase('31.12.2006'));
+        $this->assertEquals('35 лет', $person->getAgePhrase('31.12.2019'));
+        $this->assertNull($person->getAgePhrase(new DateTime('20.10.1984')));
 
         $this->assertTrue($person->isAdult());
         $this->assertFalse($person->isAdult('01.01.2000'));
