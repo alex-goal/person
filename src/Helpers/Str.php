@@ -61,4 +61,35 @@ class Str
     {
         return mb_convert_case($name, MB_CASE_TITLE);
     }
+
+    /**
+     * Склонение существительных в зависимости от числительных.
+     *
+     * @param  mixed  $value  Значение
+     * @param  array  $words  Массив вариантов, например: ['год', 'года', 'лет']
+     * @param  bool  $show  Включает значение $value в результирующею строку
+     * @return string
+     */
+    public static function numWithWord($value, array $words, bool $show = true): string
+    {
+        $value = (int) $value;
+
+        $num = $value % 100;
+
+        if ($num > 19) {
+            $num = $num % 10;
+        }
+
+        $out = $show ?  ($value . ' ') : '';
+
+        switch ($num) {
+            case 1:  $out .= $words[0]; break;
+            case 2:
+            case 3:
+            case 4:  $out .= $words[1]; break;
+            default: $out .= $words[2]; break;
+        }
+
+        return $out;
+    }
 }
