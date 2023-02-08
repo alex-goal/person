@@ -94,7 +94,13 @@ class Birthday
 
         $age = $this->date->diffInYears($date, false);
 
-        return $age < 0 ? null : $age;
+        if ($age > 0) {
+            return $age;
+        } elseif ($age < 0) {
+            return null;
+        }
+
+        return $this->date->diffInDays($date, false) < 0 ? null : 0;
     }
 
 
