@@ -65,7 +65,7 @@ trait HasGender
      *
      * @return self
      */
-    public function setMaleGender(): self
+    public function setMale(): self
     {
         $this->gender = Gender::create('male');
 
@@ -77,7 +77,7 @@ trait HasGender
      *
      * @return self
      */
-    public function setFemaleGender(): self
+    public function setFemale(): self
     {
         $this->gender = Gender::create('female');
 
@@ -89,9 +89,9 @@ trait HasGender
      *
      * @return bool
      */
-    public function isMaleGender(): bool
+    public function isMale(): bool
     {
-        return $this->gender && $this->gender->isMaleGender();
+        return $this->gender && $this->gender->isMale();
     }
 
     /**
@@ -99,8 +99,8 @@ trait HasGender
      *
      * @return bool
      */
-    public function isFemaleGender(): bool
+    public function isFemale(): bool
     {
-        return $this->gender && $this->gender->isFemaleGender();
+        return $this->gender && $this->gender->isFemale();
     }
 }
