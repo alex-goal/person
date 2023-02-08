@@ -20,7 +20,6 @@ trait HasGender
         return $this->gender;
     }
 
-
     /**
      * Получить название пола.
      *
