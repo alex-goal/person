@@ -60,6 +60,11 @@ class PersonTest extends TestCase
         $this->assertEquals('Иванова-Сидорова Санта-Люсия Петровна', $person->getFullNameUcFirst());
         $this->assertEquals('ИВАНОВА-СИДОРОВА САНТА-ЛЮСИЯ ПЕТРОВНА', $person->getFullNameUpper());
         $this->assertEquals('иванова-сидорова санта-люсия петровна', $person->getFullNameLower());
+        $this->assertEquals('С.П.', $person->getInitials());
+
+        $this->assertNull(Person::create()->setMiddlename('Петровна')->getInitials());
+        $this->assertEquals('П.', Person::create()->setFirstname('Петр')->getInitials());
+        $this->assertEquals('П.С.', Person::create()->setFirstname('Петр')->setMiddlename('Сидорович')->getInitials());
 
         $this->assertFalse($person->hasGender());
         $this->assertNull($person->getGender());
