@@ -2,6 +2,7 @@
 
 namespace AlexGoal\Person\Components;
 
+use AlexGoal\Person\Helpers\Str;
 use Carbon\Carbon;
 use DateTimeInterface;
 
@@ -94,9 +95,31 @@ class Birthday
 
         $age = $this->date->diffInYears($date, false);
 
-        return $age < 0 ? null : $age;
+        if ($age > 0) {
+            return $age;
+        } elseif ($age < 0) {
+            return null;
+        }
+
+        return $this->date->diffInDays($date, false) < 0 ? null : 0;
     }
 
+    /**
+     * Получить возраст вместе со словом год|года|лет.
+     *
+     * @param DateTimeInterface|string|null $date Дата, на которую получить возраст.
+     * @return string|null
+     */
+    public function getAgePhrase($date = null): ?string
+    {
+        $age = $this->getAge($date);
+
+        if (is_null($age)) {
+            return null;
+        }
+
+        return Str::numWithWord($age, ['год', 'года', 'лет']);
+    }
 
     /**
      * Является совершеннолетним?

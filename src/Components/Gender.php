@@ -73,9 +73,7 @@ class Gender
         } elseif (mb_stripos($genderName, 'жен') !== false) {
             $this->setFemale();
         } else {
-            $genderName = mb_strtolower($genderName);
-
-            switch ($genderName) {
+            switch (mb_strtolower($genderName)) {
                 case 'м':
                 case 'm':
                 case 'man':

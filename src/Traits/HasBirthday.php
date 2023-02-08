@@ -84,6 +84,19 @@ trait HasBirthday
     }
 
     /**
+     * Получить возраст вместе со словом год|года|лет.
+     *
+     * @param DateTimeInterface|string|null $date Дата, на которую получить возраст.
+     * @return string|null
+     */
+    public function getAgePhrase($date = null): ?string
+    {
+        return $this->hasBirthday()
+            ? $this->getBirthday()->getAgePhrase($date)
+            : null;
+    }
+
+    /**
      * Является совершеннолетним?
      *
      * @param DateTimeInterface|string|null $date Дата, на которую проверять.
