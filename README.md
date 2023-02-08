@@ -76,13 +76,14 @@ PHP-библиотека по управлению персональными д
     $birthday = Birthday::create()->setDate(new DataTime('2001-01-01'));
 
     // Возраст
-    $birthday->getAge() // возраст на текущую дату
-    $birthday->getAge('2101-01-01') // 100 (возраст на дату 2101-01-01)
-    $birthday->getDateByFormat('d.m.y') // 01.01.01
-
+    $birthday->getAge(); // возраст на текущую дату
+    $birthday->getAge('2101-01-01'); // 100 (возраст на дату 2101-01-01)
+    $birthday->getDateByFormat('d.m.y'); // 01.01.01
+    $birthday->getAgePhrase('1985-10-21') // 1 год (возраст со словом год|года|лет);
+    
     // Совершеннолетие
-    $birthday->isAdult() // true (на текущую дату)
-    $birthday->isAdult('2011-01-01') // false (на дату 2011-01-01)
+    $birthday->isAdult(); // true (на текущую дату)
+    $birthday->isAdult('2011-01-01'); // false (на дату 2011-01-01)
 
     // Использование совместно с Person
     $person = Person::create('иванов петр сидорович')->setBirhday('2000-01-01');
