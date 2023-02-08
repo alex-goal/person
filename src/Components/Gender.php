@@ -47,7 +47,7 @@ class Gender
             return null;
         }
 
-        return $this->isMaleGender()
+        return $this->isMale()
             ? ($maleName ?? self::GENDER_MALE_NAME)
             : ($femaleName ?? self::GENDER_FEMALE_NAME);
     }
@@ -69,9 +69,9 @@ class Gender
         }
 
         if (mb_stripos($genderName, 'муж') !== false) {
-            $this->setMaleGender();
+            $this->setMale();
         } elseif (mb_stripos($genderName, 'жен') !== false) {
-            $this->setFemaleGender();
+            $this->setFemale();
         } else {
             $genderName = mb_strtolower($genderName);
 
@@ -80,13 +80,13 @@ class Gender
                 case 'm':
                 case 'man':
                 case 'male':
-                    $this->setMaleGender();
+                    $this->setMale();
                     break;
                 case 'ж':
                 case 'f':
                 case 'woman':
                 case 'female':
-                    $this->setFemaleGender();
+                    $this->setFemale();
                     break;
             }
         }
@@ -109,7 +109,7 @@ class Gender
      *
      * @return $this
      */
-    public function setMaleGender(): Gender
+    public function setMale(): Gender
     {
         $this->name = self::GENDER_MALE_NAME;
 
@@ -121,7 +121,7 @@ class Gender
      *
      * @return $this
      */
-    public function setFemaleGender(): Gender
+    public function setFemale(): Gender
     {
         $this->name = self::GENDER_FEMALE_NAME;
 
@@ -133,7 +133,7 @@ class Gender
      *
      * @return bool
      */
-    public function isMaleGender(): bool
+    public function isMale(): bool
     {
         return $this->name == self::GENDER_MALE_NAME;
     }
@@ -143,7 +143,7 @@ class Gender
      *
      * @return bool
      */
-    public function isFemaleGender(): bool
+    public function isFemale(): bool
     {
         return $this->name == self::GENDER_FEMALE_NAME;
     }
