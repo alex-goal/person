@@ -31,7 +31,7 @@ class PersonTest extends TestCase
         $person->setGender(new Gender('Ж'));
         $this->testGender($person);
 
-        $person->setGender(Gender::create()->setFemaleGender());
+        $person->setGender(Gender::create()->setFemale());
         $this->testGender($person);
 
         $person->setBirthday('21/10/84', 'd/m/y');
@@ -73,8 +73,8 @@ class PersonTest extends TestCase
     public function testGender(Person $person)
     {
         $this->assertTrue($person->hasGender());
-        $this->assertFalse($person->isMaleGender());
-        $this->assertTrue($person->isFemaleGender());
+        $this->assertFalse($person->isMale());
+        $this->assertTrue($person->isFemale());
 
         $this->assertEquals('female', $person->getGenderName());
         $this->assertEquals('Ж', $person->getGenderName('М', 'Ж'));
@@ -90,6 +90,7 @@ class PersonTest extends TestCase
         $this->assertEquals('1984-10-21', $person->getBirthdayByFormat());
         $this->assertEquals('21.10.1984', $person->getBirthdayByFormat('21.10.1984'));
         $this->assertEquals('19841021', $person->getBirthday()->getDate()->format('Ymd'));
+        $this->assertEquals(10, $person->getAge('1994-10-21'));
 
         $this->assertEquals(38, $person->getAge('2023-02-08'));
         $this->assertEquals(38, $person->getAge(new DateTime('2023-02-08')));
