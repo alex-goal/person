@@ -2,6 +2,7 @@
 
 namespace AlexGoal\Person\Components;
 
+use AlexGoal\Person\Helpers\Date;
 use Carbon\Carbon;
 use DateTimeInterface;
 
@@ -11,22 +12,22 @@ class Period
     protected $start;
 
     /** @var Carbon */
-    protected $finish;
+    protected $end;
 
     /**
      * Period Constructor.
      *
      * @param DateTimeInterface|string|null $start
-     * @param DateTimeInterface|string|null $finish
+     * @param DateTimeInterface|string|null $end
      */
-    public function __construct($start = null, $finish = null)
+    public function __construct($start = null, $end = null)
     {
         if (! empty($start)) {
             $this->setStart($start);
         }
 
-        if (! empty($finish)) {
-            $this->setFinish($finish);
+        if (! empty($end)) {
+            $this->setEnd($end);
         }
     }
 
@@ -34,12 +35,12 @@ class Period
      * Create Period.
      *
      * @param DateTimeInterface|string|null $start
-     * @param DateTimeInterface|string|null $finish
+     * @param DateTimeInterface|string|null $end
      * @return Period
      */
-    public static function create($start = null, $finish = null): Period
+    public static function create($start = null, $end = null): Period
     {
-        return new self($start, $finish);
+        return new self($start, $end);
     }
 
     /**
@@ -61,9 +62,7 @@ class Period
      */
     public function setStart($start, string $format = null): self
     {
-        $this->start = $format
-            ? Carbon::createFromFormat($format, $start)
-            : Carbon::parse($start);
+        $this->start = Date::createCarbon($start, $format);
 
         return $this;
     }
@@ -83,23 +82,21 @@ class Period
      *
      * @return Carbon
      */
-    public function getFinish(): ?Carbon
+    public function getEnd(): ?Carbon
     {
-        return $this->finish;
+        return $this->end;
     }
 
     /**
      * Установить конец периода.
      *
-     * @param DateTimeInterface|string $finish
+     * @param DateTimeInterface|string $end
      * @param string|null $format
      * @return Period
      */
-    public function setFinish($finish, string $format = null): self
+    public function setEnd($end, string $format = null): self
     {
-        $this->start = $format
-            ? Carbon::createFromFormat($format, $finish)
-            : Carbon::parse($finish);
+        $this->end = Date::createCarbon($end, $format);
 
         return $this;
     }
@@ -109,9 +106,35 @@ class Period
      *
      * @return bool
      */
-    public function hasFinish(): bool
+    public function hasEnd(): bool
     {
-        return ! empty($this->start);
+        return ! empty($this->end);
     }
 
+    /**
+     * Входит ли текущая дата или указанная в период?
+     *
+     * @param null $date
+     * @param string|null $format
+     * @return bool
+     */
+    public function isValid($date = null, string $format = null): bool
+    {
+        $date = Date::createCarbonOrNow($date, $format);
+
+        if ($this->hasStart() && $this->hasEnd()) {
+            return $this->start <= $date && $this->end >= $date;
+        }
+
+        if ($this->hasStart()) {
+            return $this->start <= $date;
+        }
+
+        if ($this->hasEnd()) {
+
+            return $this->end >= $date;
+        }
+
+        return true;
+    }
 }
