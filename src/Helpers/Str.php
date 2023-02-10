@@ -32,12 +32,15 @@ class Str
     /**
      * Оставляет в строке только цифры.
      *
-     * @param  string  $str
+     * @param string $str
+     * @param int|null $length
      * @return string
      */
-    public static function onlyNumeric(string $str): string
+    public static function onlyNumeric(string $str, int $length = null): string
     {
-        return preg_replace("/[^0-9]/", '', $str);
+        $numeric = preg_replace("/[^0-9]/", '', $str);
+
+        return $length ? mb_substr($numeric, 0, $length) : $numeric;
     }
 
     /**
