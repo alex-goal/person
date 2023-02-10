@@ -30,4 +30,14 @@ class Date
             ? self::createCarbon($date, $format)
             : Carbon::now();
     }
+
+    /**
+     * @param DateTimeInterface|null $date
+     * @param string $format
+     * @return string|null
+     */
+    public static function getDateByFormat(?DateTimeInterface $date, string $format): ?string
+    {
+        return ! empty($date) ? $date->format($format) : null;
+    }
 }
