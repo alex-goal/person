@@ -3,6 +3,7 @@
 namespace AlexGoal\Person;
 
 use AlexGoal\Person\Traits\HasBirthday;
+use AlexGoal\Person\Traits\HasDocs;
 use AlexGoal\Person\Traits\HasGender;
 use AlexGoal\Person\Traits\HasNames;
 
@@ -10,7 +11,8 @@ class Person
 {
     use HasNames,
         HasGender,
-        HasBirthday;
+        HasBirthday,
+        HasDocs;
 
     /**
      * Person Constructor.
