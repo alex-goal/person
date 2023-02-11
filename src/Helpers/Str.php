@@ -32,12 +32,36 @@ class Str
     /**
      * Оставляет в строке только цифры.
      *
-     * @param  string  $str
+     * @param string $str
+     * @param int|null $length
      * @return string
      */
-    public static function onlyNumeric(string $str): string
+    public static function onlyNumeric(string $str, int $length = null): string
     {
-        return preg_replace("/[^0-9]/", '', $str);
+        $numeric = preg_replace("/[^0-9]/", '', $str);
+
+        return $length ? mb_substr($numeric, 0, $length) : $numeric;
+    }
+
+    /**
+     * Замена первого вхождения заданного значения в строке.
+     *
+     * @param string $search
+     * @param string $replace
+     * @param string $subject
+     * @return array|string|string[]
+     */
+    public static function replaceFirst(string $search, string $replace, string $subject)
+    {
+        if ($search == '') {
+            return $subject;
+        }
+
+        $position = strpos($subject, $search);
+
+        return $position !== false
+            ? substr_replace($subject, $replace, $position, strlen($search))
+            : $subject;
     }
 
     /**
