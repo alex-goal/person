@@ -44,6 +44,27 @@ class Str
     }
 
     /**
+     * Замена первого вхождения заданного значения в строке.
+     *
+     * @param string $search
+     * @param string $replace
+     * @param string $subject
+     * @return array|string|string[]
+     */
+    public static function replaceFirst(string $search, string $replace, string $subject)
+    {
+        if ($search == '') {
+            return $subject;
+        }
+
+        $position = strpos($subject, $search);
+
+        return $position !== false
+            ? substr_replace($subject, $replace, $position, strlen($search))
+            : $subject;
+    }
+
+    /**
      * Делает первую букву заглавной.
      *
      * @param string $str
