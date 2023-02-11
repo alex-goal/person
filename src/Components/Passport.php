@@ -112,7 +112,8 @@ class Passport
      */
     public function isValidFullNumber(): bool
     {
-        return mb_strlen($this->getFullNumber()) == 10;
+        return $this->hasFullNumber()
+            && mb_strlen($this->getFullNumber()) == 10;
     }
 
     /**
