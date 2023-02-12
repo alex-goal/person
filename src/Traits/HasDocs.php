@@ -2,6 +2,7 @@
 
 namespace AlexGoal\Person\Traits;
 
+use AlexGoal\Person\Components\Inn;
 use AlexGoal\Person\Components\Passport;
 use AlexGoal\Person\Support\Collection;
 use Exception;
@@ -19,6 +20,7 @@ trait HasDocs
         if (empty($this->docs)) {
             $this->docs = new Collection([
                 Passport::class,
+                Inn::class,
             ]);
         }
 
@@ -40,6 +42,22 @@ trait HasDocs
     public function getPassports(): array
     {
         return $this->getDocs()->get(Passport::class);
+    }
+
+    /**
+     * @return array
+     */
+    public function getPassport(): array
+    {
+        return $this->getDocs()->getFirst(Passport::class);
+    }
+
+    /**
+     * @return Inn|null
+     */
+    public function getInn(): ?Inn
+    {
+        return $this->getDocs()->getFirst(Inn::class);
     }
 
     /**
