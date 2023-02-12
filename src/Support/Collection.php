@@ -43,6 +43,17 @@ class Collection
     }
 
     /**
+     * @param string|null $type
+     * @return mixed|null
+     */
+    public function getFirst(string $type = null)
+    {
+        return $this->has($type)
+            ? array_values($this->get($type))[0]
+            : null;
+    }
+
+    /**
      * @param callable $callback
      * @param string|null $type
      * @return array

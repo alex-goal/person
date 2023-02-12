@@ -183,7 +183,8 @@ class Passport
     }
 
     /**
-     * @return Carbon
+     * @param string $format
+     * @return string|null
      */
     public function getDateByFormat(string $format = 'Y-m-d'): ?string
     {
