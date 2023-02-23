@@ -7,9 +7,9 @@ class Format
     /**
      * @param string $string
      * @param string $format
-     * @return array|false|string|string[]|null
+     * @return string
      */
-    public static function get(string $string, string $format)
+    public static function get(string $string, string $format): string
     {
         $format = mb_strtoupper($format);
 

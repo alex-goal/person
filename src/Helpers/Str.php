@@ -49,9 +49,9 @@ class Str
      * @param string $search
      * @param string $replace
      * @param string $subject
-     * @return array|string|string[]
+     * @return string
      */
-    public static function replaceFirst(string $search, string $replace, string $subject)
+    public static function replaceFirst(string $search, string $replace, string $subject): string
     {
         if ($search == '') {
             return $subject;

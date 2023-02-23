@@ -4,6 +4,7 @@ namespace AlexGoal\Person\Traits;
 
 use AlexGoal\Person\Components\Inn;
 use AlexGoal\Person\Components\Passport;
+use AlexGoal\Person\Components\Snils;
 use AlexGoal\Person\Support\Collection;
 use Exception;
 
@@ -21,6 +22,7 @@ trait HasDocs
             $this->docs = new Collection([
                 Passport::class,
                 Inn::class,
+                Snils::class,
             ]);
         }
 
@@ -58,6 +60,14 @@ trait HasDocs
     public function getInn(): ?Inn
     {
         return $this->getDocs()->getFirst(Inn::class);
+    }
+
+    /**
+     * @return Snils|null
+     */
+    public function getSnils(): ?Snils
+    {
+        return $this->getDocs()->getFirst(Snils::class);
     }
 
     /**
