@@ -4,9 +4,12 @@ namespace AlexGoal\Person\Components;
 
 use AlexGoal\Person\Helpers\Format;
 use AlexGoal\Person\Helpers\Str;
+use AlexGoal\Person\Traits\HasDocType;
 
 class Snils
 {
+    use HasDocType;
+
     protected $number;
 
     /**
