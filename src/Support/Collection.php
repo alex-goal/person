@@ -54,6 +54,16 @@ class Collection
     }
 
     /**
+     * @return mixed|null
+     */
+    public function getRand()
+    {
+        return ! $this->isEmpty()
+            ? $this->data[rand(0, $this->count() - 1)]
+            : null;
+    }
+
+    /**
      * @param callable $callback
      * @param string|null $type
      * @return array
