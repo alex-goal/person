@@ -105,4 +105,12 @@ trait HasDocs
     {
         return $this->getDocs()->has($type);
     }
+
+    /**
+     * @return mixed|null
+     */
+    public function getRandDoc()
+    {
+        return $this->getDocs()->getRand();
+    }
 }
