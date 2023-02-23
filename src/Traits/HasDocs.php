@@ -2,6 +2,7 @@
 
 namespace AlexGoal\Person\Traits;
 
+use AlexGoal\Person\Components\Driver;
 use AlexGoal\Person\Components\Inn;
 use AlexGoal\Person\Components\Passport;
 use AlexGoal\Person\Components\Snils;
@@ -23,6 +24,7 @@ trait HasDocs
                 Passport::class,
                 Inn::class,
                 Snils::class,
+                Driver::class,
             ]);
         }
 
@@ -68,6 +70,22 @@ trait HasDocs
     public function getSnils(): ?Snils
     {
         return $this->getDocs()->getFirst(Snils::class);
+    }
+
+    /**
+     * @return array
+     */
+    public function getDrivers(): array
+    {
+        return $this->getDocs()->get(Driver::class);
+    }
+
+    /**
+     * @return Driver|null
+     */
+    public function getDriver(): ?Driver
+    {
+        return $this->getDocs()->getFirst(Driver::class);
     }
 
     /**
