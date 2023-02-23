@@ -6,13 +6,15 @@ use AlexGoal\Person\Traits\HasBirthday;
 use AlexGoal\Person\Traits\HasDocs;
 use AlexGoal\Person\Traits\HasGender;
 use AlexGoal\Person\Traits\HasNames;
+use AlexGoal\Person\Traits\HasPhones;
 
 class Person
 {
     use HasNames,
         HasGender,
         HasBirthday,
-        HasDocs;
+        HasDocs,
+        HasPhones;
 
     /**
      * Person Constructor.
