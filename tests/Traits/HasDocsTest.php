@@ -40,5 +40,6 @@ class HasDocsTest extends TestCase
 
         $this->assertEquals('807957352413', $person->getInn()->getNumber());
         $this->assertEquals('20.10.00', $person->getInn()->getDateByFormat('d.m.y'));
+        $this->assertTrue($person->getInn()->isInn());
     }
 }
