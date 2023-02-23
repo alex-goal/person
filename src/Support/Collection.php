@@ -2,9 +2,10 @@
 
 namespace AlexGoal\Person\Support;
 
+use Countable;
 use InvalidArgumentException;
 
-class Collection
+class Collection implements Countable
 {
     /** @var array */
     private $types;
