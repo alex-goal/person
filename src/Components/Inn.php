@@ -4,11 +4,14 @@ namespace AlexGoal\Person\Components;
 
 use AlexGoal\Person\Helpers\Date;
 use AlexGoal\Person\Helpers\Str;
+use AlexGoal\Person\Traits\HasDocType;
 use Carbon\Carbon;
 use DateTimeInterface;
 
 class Inn
 {
+    use HasDocType;
+
     /** @var string */
     protected $number;
 
