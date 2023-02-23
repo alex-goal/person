@@ -59,7 +59,7 @@ class Collection implements Countable
      */
     public function getRand()
     {
-        return ! $this->isEmpty()
+        return $this->isNotEmpty()
             ? $this->data[rand(0, $this->count() - 1)]
             : null;
     }
@@ -108,6 +108,14 @@ class Collection implements Countable
     public function isEmpty(): bool
     {
         return empty($this->data);
+    }
+
+    /**
+     * @return bool
+     */
+    public function isNotEmpty(): bool
+    {
+        return ! $this->isEmpty();
     }
 
     /**
